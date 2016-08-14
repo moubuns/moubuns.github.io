@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="null">
+    <meta name="keyword"  content="undefined">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          WWDC攻略｜mwlio
+        
+    </title>
+
+    <link rel="canonical" href="http://mwlio.github.io/2016/03/19/wwdc/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/galaxy.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    mwlio
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<style>
+
+    header.intro-header{
+        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/85feee2fad7015b49bbd603c49c3e9fc_r.jpg?imageView2/1/w/1400/h/400/interlace/1/q/90')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>WWDC攻略</h1>
+                    
+                    <span class="meta">
+                         作者 mwlio
+                         <span>
+                          日期 2016-03-19
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#WWDC" title="WWDC">WWDC</a>
+                        
+                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            WWDC攻略
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <p>2015年和同事<a href="http://liuduo.me/" target="_blank" rel="external">土豪铎</a>抽到WWDC门票，公司报销全程住宿机票，整理了一下出行纪录，希望能帮到接下来准备去WWDC的同学们～！</p>
+<h2 id="出国的准备"><a href="#出国的准备" class="headerlink" title="出国的准备"></a>出国的准备</h2><hr>
+<h3 id="护照"><a href="#护照" class="headerlink" title="护照"></a>护照</h3><p>有居住证或户口可以在本地办理，如果没有前往户籍所在地派出所办理。</p>
+<h3 id="签证"><a href="#签证" class="headerlink" title="签证"></a>签证</h3><p>最难办理的就是这个了，博主就挂了一次，需要准备很多材料。Orz感觉去美国真心麻烦～<br>博主是公司找代办机构帮忙办理签证手续的，费用大约200～1300，代理会让你缴签证费1008软妹币，然后排号安排你准备面签。</p>
+<h3 id="面签"><a href="#面签" class="headerlink" title="面签"></a>面签</h3><p>比较考验人品，比如站我前面的一妹子，用了2分钟就过了，然而我第一次面签挂了！如果是白本，比如博主我，要准备出示充足的材料证明你肯定会回来，博主第二次面签的时候准备的材料就很多，基本他说一句就扔一个相关材料，然后面试官大概问你5-10个问题左右就会说你是否可以通过。但是，也有可能面试官比较不爽，给你一张拒签的表格，如果你准备的材料充分，完全可以证明你能回来，可以给他递交相关材料，也有可能会让他撤回拒签，不过我没试过～ 挑面试官爷很重要，有些面签官挂人的几率很大。<br>    一般面试官问的问题都是DS160表格上填写的问题，这些东西必须保证你回答的时候，和表格上填写的一致。会问，以下问题</p>
+<ul>
+<li>你为什么去美国？</li>
+<li>你的邀请函呢？</li>
+<li>你在哪里工作？</li>
+<li>你那个学校毕业的？</li>
+<li>你什么学历？</li>
+<li>你收入多少？</li>
+<li>…</li>
+</ul>
+<p><code>准备材料大概如下，**DS160表格**，**邀请函**，**行程安排**，**准假信**，**营业执照**，**护照**，照片，身份证，户口本，居住证，工资单，银行卡对账单，结婚证，资产证明，往返机票订单，酒店订单，以及各种证明你一定要回国的材料。</code></p>
+<h2 id="购买WWDC-Ticket"><a href="#购买WWDC-Ticket" class="headerlink" title="购买WWDC Ticket"></a>购买WWDC Ticket</h2><hr>
+<h3 id="信用卡"><a href="#信用卡" class="headerlink" title="信用卡"></a>信用卡</h3><p>VISA额度大于<em>10000</em>人民币(如果不够可以充现金进去)，WWDC的门票1599刀.</p>
+<h3 id="购买WWDC门票"><a href="#购买WWDC门票" class="headerlink" title="购买WWDC门票"></a>购买WWDC门票</h3><p>需要一个Apple开发者账号，需要在摇号之前购买，提交订单。当看最后结束截止时间，看到手机短信扣了1599到的时候就中奖了～，如果中奖时信用卡钱不够往里面充钱就可以了～</p>
+<p><code>Tip，如果要加大中奖几率，可以多个账号去购买</code></p>
+<h2 id="机票和住宿"><a href="#机票和住宿" class="headerlink" title="机票和住宿"></a>机票和住宿</h2><hr>
+<h3 id="机票"><a href="#机票" class="headerlink" title="机票"></a>机票</h3><p>机票往返的价格大概在11000左右，如果只买去的机票不买回来的，那么是拿不到机票的。订机票时应定提前一天的，开会前一天要到Moscone去扫Wallet的门票。</p>
+<h3 id="宾馆"><a href="#宾馆" class="headerlink" title="宾馆"></a>宾馆</h3><p>需要以前预定，在搞定签证的时候，普通酒店一晚上的费用大约100刀左右。入住时需要提供护照。如果信用卡支付的话，有可能在离店时没有纸质小票，会有电子小票提供你报销。</p>
+<h3 id="美金"><a href="#美金" class="headerlink" title="美金"></a>美金</h3><p>出发前需要去银行兑换美元300～500刀左右, 主要用于交通费和买电话卡。给小费也是其中之一，每天起床给床头柜放1美刀～！吃饭的时候如果人给你端盘子服务的话百分之15，大约70刀的饭给10刀小费～！看了多年美剧，我突然理解为啥每次都看到他们放钱在桌子上了，没有找零钱，当然麦当劳这种不用给的～。</p>
+<h2 id="WWDC"><a href="#WWDC" class="headerlink" title="WWDC"></a>WWDC</h2><hr>
+<h3 id="出发"><a href="#出发" class="headerlink" title="出发"></a>出发</h3><p>提前3小时到机场登机，出国在海关需要很多检查，过海关的时候禁止拍，我们当时乘坐的是波音747，座位位置比较小，大概在天上飘12个小时，飞机上的服务还是比国内给力的。飞机上会让你添一张入境表格，上面需要填写一些相关的入关信息，在美国入关的时候海需要做一些安全检查，会用英语问你为什么去美国去几天，出示邀请函，如果倒霉的话会被拉到小房间查包。</p>
+<h3 id="到达"><a href="#到达" class="headerlink" title="到达"></a>到达</h3><p>如果是会前一天早上到，那么下来先去取票，工作人员会核对护照信息，给你打印一个Badge,这个就是门卡啦，这几天入场全靠它了，并且在给你的时候告诉你不能丢！！<br>签到之后，在大厅拍拍照，之后可以回宾馆了，或者出去逛一圈，回来就睡会～，凌晨1点就要去Moscone排队，那个时间门口可能也有近100多人额。（其实……也可以不排队，早上7点多左右，在他们要准备向前冲的时候突然插进去,当然你可以免去拍队，不过被鄙视了可别怪我！)</p>
+<h3 id="WWDC-1"><a href="#WWDC-1" class="headerlink" title="WWDC"></a>WWDC</h3><p>等冲到门口的时候继续排队，苹果的工作人员会，不断活跃气氛，拍摄开发者排队的场面～！等到快8点的时候进入Moscone，继续排队大约一小时，苹果的贵宾席入场，最后，就是开发者进去了～！距离厨子Cook 隔离贵宾席，依然看到的库克是一个小人。按照惯例,第一天只有3个Session，Keynote,Platforms State Of The Union，design award。这里推荐使用苹果官方APP WWDC这个APP可以在你的日历中添加，把后面每天需要看的session做一个日历。<br>从第二天开始每天就是不同的session，这里建议找感兴趣的听一下，其实我更近建议把一年碰到的开发问题记录下来去Labs，这个最直接的机会去和苹果工程师交流，能够得到一些比较官方的建议，也能获取到一些苹果工程师写的代码，所以想去wwdc的同学从现在开始就记录一些平时遇到的开发的问题，直接和苹果工程师面对面的交流吧～！<br>Labs里面有一个最重要的Labs，那就是UI Design Labs，这个Labs，需要提前预约，早上早点去预约，哪里有懂中文的工程师，可以在交流的时候问问，是否可以找一个能直接用中文交流的工程师～！</p>
+<p>##Tips</p>
+<ul>
+<li>时差计算旧金山与北京时间相差15个小时，这个非常重要，当你觉得你在美国17号，你回来也应该是17号的时候，其实中国已经18号了</li>
+<li>在美国刷卡时不需要输密码，即使你设置里密码，购物时携带好本人的护照，会看你的护照来确认是否本人消费。</li>
+<li>在飞机上带一双纸质拖鞋和降噪耳机是极好的～</li>
+<li>建议携带2～3包泡面，额，当我吃了一周汉堡之后，我和同事立马去吃了一顿小肥羊。</li>
+<li>牙刷(酒店不提供牙刷～)</li>
+<li>没有热水</li>
+<li>插线板</li>
+<li>购买电子产品的话，加州交了消费税，而且不退稅，很多东西的价格和上海是差不多的，甚至有些会比国内的还要贵！</li>
+<li>买衣服可以租车去Outlets那里的衣服和鞋都是有很低的折扣，500左右就可以买到2条李维斯的裤子.</li>
+<li>租车建议，有驾照并且开车技术不错，可以考虑租车，价格很便宜，美国开车真的超爽～！</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/26/may/" data-toggle="tooltip" data-placement="top" title="五月">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2015/09/22/minzi/" data-toggle="tooltip" data-placement="top" title="minzi">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/03/19/wwdc/"
+                        data-title="WWDC攻略"
+                        data-url="http://mwlio.github.io/2016/03/19/wwdc/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#出国的准备"><span class="toc-text">出国的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#护照"><span class="toc-text">护照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#签证"><span class="toc-text">签证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面签"><span class="toc-text">面签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#购买WWDC-Ticket"><span class="toc-text">购买WWDC Ticket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信用卡"><span class="toc-text">信用卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#购买WWDC门票"><span class="toc-text">购买WWDC门票</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机票和住宿"><span class="toc-text">机票和住宿</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机票"><span class="toc-text">机票</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#宾馆"><span class="toc-text">宾馆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#美金"><span class="toc-text">美金</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WWDC"><span class="toc-text">WWDC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#出发"><span class="toc-text">出发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#到达"><span class="toc-text">到达</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WWDC-1"><span class="toc-text">WWDC</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#WWDC" title="WWDC">WWDC</a>
+                        
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5 class="text-center">FRIENDS</h5>
+                <ul class="list-inline text-center">
+
+                    
+                        <li><a href="http://liuduo.me/">土豪铎</a></li>
+                    
+                        <li><a href="http://blog.lanvige.com/">老司机</a></li>
+                    
+                        <li><a href="http://ohmerhe.com/">粱伟胖</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'mwlio';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <p class="copyright text-muted">
+                    Copyright &copy; mwlio 2016
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mwlio.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','undefined','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>
