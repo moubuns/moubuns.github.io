@@ -16,11 +16,11 @@
 
     <title>
         
-          Sketch自动保存目录清空｜mwlio
+          UIKit Issues｜mwlio
         
     </title>
 
-    <link rel="canonical" href="http://mwlio.github.io/2016/08/15/cleansketch/">
+    <link rel="canonical" href="http://mwlio.github.io/2016/08/20/uikitissues/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -142,7 +142,7 @@
 <style>
 
     header.intro-header{
-        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/sketch.png?imageView2/1/w/1400/h/400/interlace/1/q/90')
+        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/UIKit.png?imageView2/1/w/1400/h/400/interlace/1/q/90')
     }
 
 </style>
@@ -152,17 +152,21 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Sketch自动保存目录清空</h1>
+                    <h1>UIKit Issues</h1>
+                    
+                        <h2 class="subheading">是程序就会有Bug～</h2>
                     
                     <span class="meta">
                          作者 mwlio
                          <span>
-                          日期 2016-08-15
+                          日期 2016-08-20
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#Sketch" title="Sketch">Sketch</a>
+                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                        <a class="tag" href="/tags/#UIKit" title="UIKit">UIKit</a>
                         
                     </div>
                 </div>
@@ -171,7 +175,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Sketch自动保存目录清空
+            UIKit Issues
         </span>
     </div>
 </header>
@@ -183,14 +187,12 @@
                 <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
 
-                <p>如果你用Sketch发现你的硬盘空间越来越少了，那么很用可能是Sketch引起的…</p>
-<p>Step1: </p>
-<pre><code>sudo du -sh /.DocumentRevisions-V100
-</code></pre><p>Step2:</p>
-<pre><code>sudo rm -rf  /.DocumentRevisions-V100
-</code></pre><p>Stpe3:</p>
-<pre><code>defaults write -app ‘sketch’ ApplePersistence -bool no
-</code></pre>
+                <p>是程序就会有Bug～</p>
+<h2 id="UICollectionView"><a href="#UICollectionView" class="headerlink" title="UICollectionView"></a>UICollectionView</h2><p>iOS6~iOS8.4<br>ViewLayout会缓存CollectionView的Layout信息，报的错是<br><code>UICollectionView received layout attributes for a cell with an index path that does not exist:</code></p>
+<p>复写layout布局函数在layoutAttributesForElementsInRect方法中可以看到，即使collectionView调取数据源 collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) 之后super.layoutAttributesForElementsInRect 依然返回上一次的layout信息，在iOS9这个问题被修复</p>
+<p>解决方案 在<br><code>collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int)</code><br> 时调用 <code>collectionView.collectionViewLayout.invalidateLayout()</code></p>
+<p>让collectionView的layout失效，或者在reload之前调用<br><code>collectionView.collectionViewLayout.prepareLayout()</code></p>
+
 
                 <hr>
 
@@ -198,13 +200,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/08/20/uikitissues/" data-toggle="tooltip" data-placement="top" title="UIKit Issues">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/08/15/aboutmi/" data-toggle="tooltip" data-placement="top" title="小米5">Next Post &rarr;</a>
+                            <a href="/2016/08/15/cleansketch/" data-toggle="tooltip" data-placement="top" title="Sketch自动保存目录清空">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -213,9 +211,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/08/15/cleansketch/"
-                        data-title="Sketch自动保存目录清空"
-                        data-url="http://mwlio.github.io/2016/08/15/cleansketch/" >
+                        data-thread-key="2016/08/20/uikitissues/"
+                        data-title="UIKit Issues"
+                        data-url="http://mwlio.github.io/2016/08/20/uikitissues/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -227,7 +225,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col" >
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UICollectionView"><span class="toc-text">UICollectionView</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -249,7 +247,9 @@
                 </h5>
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Sketch" title="Sketch">Sketch</a>
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                          <a class="tag" href="/tags/#UIKit" title="UIKit">UIKit</a>
                         
                     </div>
                 </section>
