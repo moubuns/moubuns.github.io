@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="null">
+    <meta name="keyword"  content="undefined">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          HTTP/2 Features and iOS or Android Useage｜mwlio
+        
+    </title>
+
+    <link rel="canonical" href="http://mwlio.github.io/2016/09/17/http2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/galaxy.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    mwlio
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/about/">about</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<style>
+
+    header.intro-header{
+        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/http2.jpg?imageView2/1/w/1400/h/400/interlace/1/q/90')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTTP/2 Features and iOS or Android Useage</h1>
+                    
+                    <span class="meta">
+                         作者 mwlio
+                         <span>
+                          日期 2016-09-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                        <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTTP/2 Features and iOS or Android Useage
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <hr>
+<p>额，同学说你这个写的都是知识点，干巴巴的不好看，不过自己看的，就这样吧！！！</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><hr>
+<ul>
+<li>超文本传输协议(HyperText Transfer Protocol)</li>
+<li>客户端与服务器应答标准</li>
+<li>基于TCP/IP协议的应用层协议</li>
+<li>91年发布HTTP/0.9，96年HTTP/1.0, 99年HTTP/1.1</li>
+<li>2015年HTTP/2 Spec 发布 RFC 7540</li>
+</ul>
+<h3 id="HTTP-0-9-HTTP-1-1"><a href="#HTTP-0-9-HTTP-1-1" class="headerlink" title="HTTP/0.9 - HTTP/1.1"></a>HTTP/0.9 - HTTP/1.1</h3><hr>
+<ul>
+<li>0.9仅有一个Get方法</li>
+<li>1.0增加若干内容如Post Head，不支持永久TCP连接…</li>
+<li>1.1版本增加更多内容，支持持久连接，管道机制，缓存… </li>
+</ul>
+<h3 id="HTTP面临的问题"><a href="#HTTP面临的问题" class="headerlink" title="HTTP面临的问题"></a>HTTP面临的问题</h3><hr>
+<ul>
+<li>TCP不能够充分被利用</li>
+<li>网络差就会延迟</li>
+<li>目前优化HTTP的方案都比较繁琐</li>
+<li>HTTP包含太多的细节和可选部分，过于庞大</li>
+<li>HTTP Pipelinging(通过管线提高TCP利用率)，会队头阻塞（Head-of-line blocking）</li>
+<li>延迟，HTTP Streaming延迟</li>
+<li><img src="http://oa3wfx1kt.bkt.clouddn.com/WebRequest.png" alt="WebRequest"></li>
+<li></li>
+</ul>
+<h3 id="目前的解决方法"><a href="#目前的解决方法" class="headerlink" title="目前的解决方法"></a>目前的解决方法</h3><ul>
+<li>合并脚本</li>
+<li>样式表</li>
+<li>图片嵌入CSS</li>
+<li>域名分片</li>
+</ul>
+<h2 id="SPDY（Speed）"><a href="#SPDY（Speed）" class="headerlink" title="SPDY（Speed）"></a>SPDY（Speed）</h2><ul>
+<li>由Google开发，设计目的在于降低网页的加载时间</li>
+<li>SPDY不用于替换HTTP，只是修改了HTTP的传输方式</li>
+<li>有多路复用，优先级，和压缩的特性</li>
+<li>仅支持在TLS(安全传输层协议)层</li>
+<li>SPDY是Google的注册商标</li>
+</ul>
+<h2 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h2><hr>
+<ul>
+<li>基于SPDY草案修改</li>
+<li>在现有协议上之上构建的新协议，保留现有</li>
+<li>更好的利用TCP特性来减少传输过程中的等待和暂停</li>
+<li>更好的Web体验</li>
+<li>HTTP/2 是google开发的 SPDY协议的一个子集</li>
+<li>解决队头阻塞(Head-of-line blocking)问题</li>
+<li>下一个协议是HTTP/3</li>
+<li><a href="http://www.rfc-editor.org/rfc/rfc7540.txt" target="_blank" rel="external">RFC 7540</a> </li>
+</ul>
+<h2 id="HTTP-2特性"><a href="#HTTP-2特性" class="headerlink" title="HTTP/2特性"></a>HTTP/2特性</h2><h3 id="与HTTP1-x兼容"><a href="#与HTTP1-x兼容" class="headerlink" title="与HTTP1.x兼容"></a>与HTTP1.x兼容</h3><p>使用NPN或者ALPN在请求之前确定应该如何使用哪种协议来通讯.  </p>
+<ul>
+<li>ALPN(Application Layer Protocol Negotiation)(HTTP2)</li>
+<li>NPN(Next Protocol Negotiation)(SYPD)   </li>
+</ul>
+<p>NPN与ALPN的区别在于: <strong>谁来决定会话所使用的协议</strong><br>ALPN：客户端先发送一个<strong>协议优先级</strong>列表给服务器，有服务器选择合适的<br>NPN：服务通知客户端所有它支持的格式，客户端来选合适的进行通信</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NPN已经被ALPN取代</div></pre></td></tr></table></figure>
+<h3 id="二进制协议"><a href="#二进制协议" class="headerlink" title="二进制协议"></a>二进制协议</h3><ul>
+<li>HTTP由文本协议变成二进制协议</li>
+<li>为了更好的实现成帧，使用文本再数据处理会很繁琐</li>
+<li>一个帧包含数据帧和头帧</li>
+<li>使用curl或者Wireshark来解析<br><img src="http://oa3wfx1kt.bkt.clouddn.com/14740804174338.jpg" alt=""></li>
+</ul>
+<h4 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h4><ul>
+<li>连接建立之后之后用帧来传输数据</li>
+<li>Length表示帧的大小</li>
+<li>Type类型定义了剩余的帧报头和帧主体将如何被解释</li>
+<li>Flags在不同帧类型赋予不同的语义</li>
+<li>StreamIdentifier流的标识符号，用于确定是那个流的帧</li>
+<li>FramePayload 数据</li>
+<li>目前已定义的帧有10种DATA、HEADERS、PRIORITY 、RST_STREAM、SETTINGS、PUSH_PROMISE、PING、GOAWAY、WINDOW_UPDATE、CONTINUATION</li>
+</ul>
+<p><img src="http://oa3wfx1kt.bkt.clouddn.com/14740804125941.jpg" alt=""></p>
+<h3 id="多路复用Multiplexing"><a href="#多路复用Multiplexing" class="headerlink" title="多路复用Multiplexing"></a>多路复用Multiplexing</h3><ul>
+<li>在一个TCP连接里，可以发送多个请求或回应，可以不按照顺序发送</li>
+</ul>
+<p><img src="http://oa3wfx1kt.bkt.clouddn.com/14740804026266.jpg" alt=""></p>
+<p><code>Multiplexing 在一个TCP连接里，服务器同时收到了A请求和B请求，于是先回应A请求，结果发现处理过程非常耗时，于是就发送A请求已经处理好的部分，接着回应B请求，完成后，再发送A请求剩下的部分。 ——</code></p>
+<h3 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h3><p><img src="http://oa3wfx1kt.bkt.clouddn.com/14740804469721.jpg" alt=""></p>
+<ul>
+<li>每个请求或回应的数据包为一个流</li>
+<li>每个流都会有一个StreamID，由启动流的终端分配</li>
+<li>客户端可以定义流的并发量</li>
+</ul>
+<h3 id="优先级和依赖性"><a href="#优先级和依赖性" class="headerlink" title="优先级和依赖性"></a>优先级和依赖性</h3><p><img src="http://oa3wfx1kt.bkt.clouddn.com/14740804554785.jpg" alt=""></p>
+<ul>
+<li>每个的帧头都会包含流的优先级标识</li>
+<li>可以根据优先级帧来调整已经发送的流的优先级</li>
+<li>没有明确指定使用默认值</li>
+<li>流可以显示依赖其他流</li>
+</ul>
+<h3 id="头压缩-HPack"><a href="#头压缩-HPack" class="headerlink" title="头压缩 HPack"></a>头压缩 HPack</h3><p><img src="http://oa3wfx1kt.bkt.clouddn.com/14730425283821/14740804888248.jpg" alt=""></p>
+<ul>
+<li>HTTP属于无状态协议，表示每次请求都会携带相同的信息，为了减少冗余信息使用了HPACK机制来对请求头进行压缩</li>
+<li>使用了默认的Static Table 和 可以由客户端添加字段的Dynamic Table</li>
+<li>使用哈夫曼编码</li>
+<li>压缩效率高效</li>
+<li>RFC 7541</li>
+</ul>
+<h3 id="中断请求"><a href="#中断请求" class="headerlink" title="中断请求"></a>中断请求</h3><ul>
+<li>如果想取消一个请求只需要发送RST_STREAM 帧就可以了</li>
+</ul>
+<h3 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h3><ul>
+<li>可以在没有请求的情况下主动向客户端推送内容</li>
+<li>客户端可以选择是否中断推送<br><img src="http://oa3wfx1kt.bkt.clouddn.com/14740805208597.jpg" alt=""><br><a href="http://oa3wfx1kt.bkt.clouddn.com/ServerPush-wwdc.mp4" target="_blank" rel="external">ServerPush-1294</a></li>
+</ul>
+<h3 id="HTTP连接管理"><a href="#HTTP连接管理" class="headerlink" title="HTTP连接管理"></a>HTTP连接管理</h3><p>HTTP/2连接是永久性的。为了最佳的性能，它期待直到确定与服务端的进一步沟通不再必要的时候，客户端才会关闭连接(例如，当用户导航到其他特定的网页)，或者直到服务端关闭连接。</p>
+<h2 id="Chrome-Debug"><a href="#Chrome-Debug" class="headerlink" title="Chrome Debug"></a>Chrome Debug</h2><hr>
+<ol>
+<li><p>使用Node.js 搭建一个建议HTTP2服务器<br><a href="https://github.com/molnarg/node-http2" target="_blank" rel="external">https://github.com/molnarg/node-http2</a></p>
+</li>
+<li><p>使用Developer Tools来查看HTTP与HTTP/2的区别<br><img src="http://oa3wfx1kt.bkt.clouddn.com/14740805981708.jpg" alt=""><br>可以看出HTTP/2使用一条TCP连接完成所有的资源请求</p>
+</li>
+<li><p>查看HTTP/2的建立与帧传输<br> chrome://net-internals/#http2</p>
+</li>
+<li><p>WireShark也支持抓包，不过因为HTTP/2走了TLS，所以要做一些代理处理，不做解释。</p>
+</li>
+</ol>
+<h1 id="Mobie"><a href="#Mobie" class="headerlink" title="Mobie"></a>Mobie</h1><hr>
+<h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><hr>
+<h3 id="NSURLSession"><a href="#NSURLSession" class="headerlink" title="NSURLSession"></a>NSURLSession</h3><hr>
+<ul>
+<li>NSURLSession在iOS9.0之支持HTTP/2,SYPD</li>
+<li>开发者不需做修改</li>
+<li>iOS10之后支持调试可查看请求使用的协议</li>
+<li>推测通过NSURLSession通过curl实现HTTP2…（经过ida拆解只找到使用了和curl相同的HTTP/2头解析库😭）</li>
+</ul>
+<h3 id="ASPN"><a href="#ASPN" class="headerlink" title="ASPN"></a>ASPN</h3><hr>
+<p><img src="http://oa3wfx1kt.bkt.clouddn.com/14740805866393.jpg" alt=""></p>
+<ul>
+<li>New provider API</li>
+<li>ASPN服务使用HTTP/2来实现，通过减少TCP连接大幅度提升服务器效率，减少服务端压力</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>iOS同学基本上,如果使用了URLSession去做网络请求可以啥都不用干，只要Server支持HTTP/2就可以了</p>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><hr>
+<p>没有写过安卓…本部分仅参考</p>
+<h3 id="OKHttp"><a href="#OKHttp" class="headerlink" title="OKHttp"></a>OKHttp</h3><hr>
+<ul>
+<li>安卓端的一个HTTP的实现</li>
+<li>JAVA实现了HTTP/2</li>
+<li>据Android同学SK分享，该库在重用TCP方面做的非常好<br><img src="http://oa3wfx1kt.bkt.clouddn.com/14740806226958.jpg" alt=""></li>
+</ul>
+<h3 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h3><p><a href="http://kamranahmed.info/blog/2016/08/13/http-in-depth/" target="_blank" rel="external">http://kamranahmed.info/blog/2016/08/13/http-in-depth/</a> HTTP协议简介<br><a href="https://github.com/square/okhttp" target="_blank" rel="external">https://github.com/square/okhttp</a>  安卓Http网络请求的实现<br><a href="https://github.com/kylef/hpack.swift" target="_blank" rel="external">https://github.com/kylef/hpack.swift</a> hpackSwift实现<br><a href="https://github.com/curl/curl" target="_blank" rel="external">https://github.com/curl/curl</a>  libcurl<br><a href="https://github.com/nghttp2/nghttp2" target="_blank" rel="external">https://github.com/nghttp2/nghttp2</a> curl里HPack的实现<br><a href="https://github.com/apple/swift-corelibs-foundation" target="_blank" rel="external">https://github.com/apple/swift-corelibs-foundation</a> Swift版本Foundation实现<br><a href="http://opensource.apple.com/source/CF/CF-1153.18/" target="_blank" rel="external">http://opensource.apple.com/source/CF/CF-1153.18/</a><br><a href="https://http2.github.io/" target="_blank" rel="external">https://http2.github.io/</a><br><a href="http://httpwg.org/specs/rfc7540.html" target="_blank" rel="external">http://httpwg.org/specs/rfc7540.html</a> RFC7540 HTTP2.0详细实现<br><a href="http://www.chromium.org/spdy/spdy-whitepaper" target="_blank" rel="external">http://www.chromium.org/spdy/spdy-whitepaper</a><br><a href="https://developer.apple.com/videos/play/wwdc2016/711/" target="_blank" rel="external">https://developer.apple.com/videos/play/wwdc2016/711/</a> NSURLSession: New Features and Best Practices<br><a href="https://developer.apple.com/videos/play/wwdc2015/711/" target="_blank" rel="external">https://developer.apple.com/videos/play/wwdc2015/711/</a> Networking with NSURLSession<br><a href="https://developer.apple.com/videos/play/wwdc2015/720/" target="_blank" rel="external">https://developer.apple.com/videos/play/wwdc2015/720/</a> What’s New in Notifications<br><a href="https://developer.apple.com/videos/play/wwdc2015/724/" target="_blank" rel="external">https://developer.apple.com/videos/play/wwdc2015/724/</a><br>What’s New in Apple Push Notification Service</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/08/23/uiscrollview/" data-toggle="tooltip" data-placement="top" title="UIScrollView">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/09/17/http2/"
+                        data-title="HTTP/2 Features and iOS or Android Useage"
+                        data-url="http://mwlio.github.io/2016/09/17/http2/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-0-9-HTTP-1-1"><span class="toc-text">HTTP/0.9 - HTTP/1.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP面临的问题"><span class="toc-text">HTTP面临的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目前的解决方法"><span class="toc-text">目前的解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPDY（Speed）"><span class="toc-text">SPDY（Speed）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-2"><span class="toc-text">HTTP/2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-2特性"><span class="toc-text">HTTP/2特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#与HTTP1-x兼容"><span class="toc-text">与HTTP1.x兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二进制协议"><span class="toc-text">二进制协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#帧"><span class="toc-text">帧</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多路复用Multiplexing"><span class="toc-text">多路复用Multiplexing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据流"><span class="toc-text">数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先级和依赖性"><span class="toc-text">优先级和依赖性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#头压缩-HPack"><span class="toc-text">头压缩 HPack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断请求"><span class="toc-text">中断请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器推送"><span class="toc-text">服务器推送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP连接管理"><span class="toc-text">HTTP连接管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome-Debug"><span class="toc-text">Chrome Debug</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mobie"><span class="toc-text">Mobie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS"><span class="toc-text">iOS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSURLSession"><span class="toc-text">NSURLSession</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASPN"><span class="toc-text">ASPN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android"><span class="toc-text">Android</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OKHttp"><span class="toc-text">OKHttp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REF"><span class="toc-text">REF</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                          <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5 class="text-center">FRIENDS</h5>
+                <ul class="list-inline text-center">
+
+                    
+                        <li><a href="http://liuduo.me/">土豪铎</a></li>
+                    
+                        <li><a href="http://blog.lanvige.com/">老司机</a></li>
+                    
+                        <li><a href="http://ohmerhe.com/">梁伟胖</a></li>
+                    
+                        <li><a href="http://huazhiyuan2008.github.io/">长剑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'mwlio';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <p class="copyright text-muted">
+                    Copyright &copy; mwlio 2016
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://mwlio.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','undefined','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+
+</html>

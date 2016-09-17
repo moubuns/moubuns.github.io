@@ -192,6 +192,8 @@
 <p>复写layout布局函数在layoutAttributesForElementsInRect方法中可以看到，即使collectionView调取数据源 collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) 之后super.layoutAttributesForElementsInRect 依然返回上一次的layout信息，在iOS9这个问题被修复</p>
 <p>解决方案 在<br><code>collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int)</code><br> 时调用 <code>collectionView.collectionViewLayout.invalidateLayout()</code></p>
 <p>让collectionView的layout失效，或者在reload之前调用<br><code>collectionView.collectionViewLayout.prepareLayout()</code></p>
+<h2 id="UIImage"><a href="#UIImage" class="headerlink" title="UIImage"></a>UIImage</h2><p>iOS9.0.x<br>在做性能调节的时侯发现这个页面掉帧很严重，而且单纯的列表展示，只是加载了几张图片，最后才发现时UIImage(named:) 这个方法的问题，竟然在iOS9.0.x没有加内存缓存…</p>
+<p>解决方案：使用另一个方法</p>
 
 
                 <hr>
@@ -199,6 +201,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/23/uiscrollview/" data-toggle="tooltip" data-placement="top" title="UIScrollView">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -225,7 +231,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col" >
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UICollectionView"><span class="toc-text">UICollectionView</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UICollectionView"><span class="toc-text">UICollectionView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIImage"><span class="toc-text">UIImage</span></a></li></ol>
                 </div>
             </div>
         </div>
