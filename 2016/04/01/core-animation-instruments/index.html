@@ -16,11 +16,11 @@
 
     <title>
         
-          UIKit Issues｜mwlio
+          Intruments Core Animation 使用简介｜mwlio
         
     </title>
 
-    <link rel="canonical" href="http://mwlio.github.io/2016/08/20/uikitissues/">
+    <link rel="canonical" href="http://mwlio.github.io/2016/04/01/core-animation-instruments/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -142,7 +142,7 @@
 <style>
 
     header.intro-header{
-        background-image: url('http://oa3wfx1kt.bkt.clouddn.com/UIKit.png?imageView2/1/w/1400/h/400/interlace/1/q/90')
+        background-image: url('')
     }
 
 </style>
@@ -152,21 +152,15 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>UIKit Issues</h1>
-                    
-                        <h2 class="subheading">是程序就会有Bug～</h2>
+                    <h1>Intruments Core Animation 使用简介</h1>
                     
                     <span class="meta">
                          作者 mwlio
                          <span>
-                          日期 2016-08-20
+                          日期 2016-04-01
                          </span>
                     </span>
                     <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
-                        
-                        <a class="tag" href="/tags/#UIKit" title="UIKit">UIKit</a>
                         
                     </div>
                 </div>
@@ -175,7 +169,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            UIKit Issues
+            Intruments Core Animation 使用简介
         </span>
     </div>
 </header>
@@ -187,13 +181,49 @@
                 <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
 
-                <p>是程序就会有Bug～</p>
-<h2 id="UICollectionView"><a href="#UICollectionView" class="headerlink" title="UICollectionView"></a>UICollectionView</h2><p>iOS6~iOS8.4<br>ViewLayout会缓存CollectionView的Layout信息，报的错是<br><code>UICollectionView received layout attributes for a cell with an index path that does not exist:</code></p>
-<p>复写layout布局函数在layoutAttributesForElementsInRect方法中可以看到，即使collectionView调取数据源 collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) 之后super.layoutAttributesForElementsInRect 依然返回上一次的layout信息，在iOS9这个问题被修复</p>
-<p>解决方案 在<br><code>collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int)</code><br> 时调用 <code>collectionView.collectionViewLayout.invalidateLayout()</code></p>
-<p>让collectionView的layout失效，或者在reload之前调用<br><code>collectionView.collectionViewLayout.prepareLayout()</code></p>
-<h2 id="UIImage"><a href="#UIImage" class="headerlink" title="UIImage"></a>UIImage</h2><p>iOS9.0.x<br>在做性能调节的时侯发现这个页面掉帧很严重，而且单纯的列表展示，只是加载了几张图片，最后才发现时UIImage(named:) 这个方法的问题，竟然在iOS9.0.x没有加内存缓存…</p>
-<p>解决方案：使用另一个方法</p>
+                <p>Core Animation 通过FPS来测量物理机上的图形性能<br>FPS: 一秒内屏幕刷新的次数<br>流畅的的屏幕刷新频率一般为60fps</p>
+<p>视图的渲染分为两个部分CPU和GPU</p>
+<p>CPU计算显示内容提交到GPU，GPU渲染完成后将渲染结果放入帧缓冲区，然后视频控制器把帧缓冲区的数据 传递给屏幕显示</p>
+<p>CPU:视图的创建、布局计算、图片解码、文本绘制….<br>GPU:进行变换、合成、渲染….  </p>
+<h1 id="模拟器和真机的差别"><a href="#模拟器和真机的差别" class="headerlink" title="模拟器和真机的差别"></a>模拟器和真机的差别</h1><p>模拟器用CoreAnimaiton不能调试，在模拟器能显示 Offscreen-Rendered 等，但是不准确，手机设备的渲染和Mac存在一定的区别，推荐使用手机调试。</p>
+<h1 id="使用调节参数"><a href="#使用调节参数" class="headerlink" title="使用调节参数"></a>使用调节参数</h1><ul>
+<li>Blended（混合） Layers<br>绿色标记Layer不需要混合, 红色标记Layer需要叠加处理, GPU需要渲染多次来出，不同Layer的显示效果。<br>如果食用带有alpha通道的图片，也会引起Blended Layers</li>
+</ul>
+<p>优化：opaque 设置为ture 设置背景为不透明，尽量减少Clear Color的使用，但是…我们大部分切图本身就是带有Alpha通道的不透明切图…</p>
+<p>减少设置背景透明，或者是这背景色，对中文无效，中文会生成一个opaque的subLayer</p>
+<ul>
+<li>Hit Green and Misses Red</li>
+</ul>
+<p>测试是否合适的使用栅格的缓存<br>栅格化:矢量图形转化为位图</p>
+<p>第一次以进入的时候, 所有的东西都需要绘制所以都会标记为红色</p>
+<ol>
+<li>rasterize 仅适用于静态内容</li>
+<li>栅格的缓存只有屏幕像素大小的2.5倍,6plus的像素为8M，也就是缓存的大小为20M</li>
+<li>如果100ms内没有使用栅格图像的缓存则会从缓存中清除</li>
+</ol>
+<p>栅格化的使用场景，避免重绘视图，如对一个动态模糊的图像进行上栅格化，减少动态模糊渲染的次数<br>优化：对于一些需要减少重复的视图设置layer.shouldRasterize = true</p>
+<ul>
+<li>Copied Image<br>青色的时候，图片的格式不能被GPU解析，需要使用CPU来进行解码</li>
+</ul>
+<p>优化：对需要处理的图片的格式进行调整</p>
+<ul>
+<li><p>Color Immedidately<br>表示Instruments在做color-flush操作时取消10毫秒的延时，打开Hit Green and Misses Red会体验到使用效果</p>
+</li>
+<li><p>Misaligned Images<br>对于比例缩放的图片标记为黄色，比如当你下载的图片时200 ＊ 200 实际显示的为100 ＊ 100<br>对于放大的图像显示为青色</p>
+</li>
+</ul>
+<p>优化：需要避免缩放，在获取图片资源的时候，应该根据尺寸进行获取</p>
+<ul>
+<li>Offscreen-Rendered Yellow</li>
+</ul>
+<p>对于发生了离屏渲染的Layer标记为黄色，对于黄色标记的越多则发生的越多<br>离线渲染发生的场景比较多<br>如NaigationBar和TabBar需要离线模糊，shouldRasterize，DrawRect等都需要在渲染中增加CPU的处理负担</p>
+<p>优化：圆角现实在CPU中计算，阴影的混合加入Path等</p>
+<ul>
+<li><p>Compositing Fast-Path Blue<br>蓝色的渲染层表示，使用硬件加速的时候，GPU会减少工作</p>
+</li>
+<li><p>Flash Updated Regions<br>黄色表示频繁刷新的领域，越少刷新则CPU和GPU的消耗越小</p>
+</li>
+</ul>
 
 
                 <hr>
@@ -203,12 +233,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/08/23/uiscrollview/" data-toggle="tooltip" data-placement="top" title="UIScrollView">&larr; Previous Post</a>
+                            <a href="/2016/05/26/may/" data-toggle="tooltip" data-placement="top" title="五月">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/08/15/cleansketch/" data-toggle="tooltip" data-placement="top" title="Sketch自动保存目录清空">Next Post &rarr;</a>
+                            <a href="/2016/03/19/wwdc/" data-toggle="tooltip" data-placement="top" title="WWDC攻略">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -217,9 +247,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/08/20/uikitissues/"
-                        data-title="UIKit Issues"
-                        data-url="http://mwlio.github.io/2016/08/20/uikitissues/" >
+                        data-thread-key="2016/04/01/core-animation-instruments/"
+                        data-title="Intruments Core Animation 使用简介"
+                        data-url="http://mwlio.github.io/2016/04/01/core-animation-instruments/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -231,7 +261,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col" >
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UICollectionView"><span class="toc-text">UICollectionView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIImage"><span class="toc-text">UIImage</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模拟器和真机的差别"><span class="toc-text">模拟器和真机的差别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用调节参数"><span class="toc-text">使用调节参数</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -252,10 +282,6 @@
                     <a href="/tags/">FEATURED TAGS</a>
                 </h5>
                     <div class="tags">
-                        
-                          <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
-                        
-                          <a class="tag" href="/tags/#UIKit" title="UIKit">UIKit</a>
                         
                     </div>
                 </section>
